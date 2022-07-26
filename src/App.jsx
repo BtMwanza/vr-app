@@ -7,7 +7,6 @@ import { Canvas } from "@react-three/fiber";
 function App() {
   return (
     <React.Fragment>
-      {/* <MainScene loading={true} /> */}
       <MainScene2 loading={true} />
     </React.Fragment>
   );

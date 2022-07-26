@@ -23,13 +23,17 @@ const MainScene2 = (props) => {
     state.far
   );
   var scene = new THREE.Scene();
+
+  // control scene
   var controls = new OrbitControls(camera, renderer.domElement);
 
+  // mount when screen loads
   React.useEffect(() => {
     initScene();
     return () => {};
   }, []);
 
+  // initiate function
   function initScene() {
     //init Loading Manager
     const loadingManager = new THREE.LoadingManager();
@@ -37,32 +41,17 @@ const MainScene2 = (props) => {
       setState({ ...state, loading: false });
     };
 
-    //init Renderer
-    // renderer = new THREE.WebGLRenderer({ antialias: true });
     renderer.setPixelRatio(
       window.devicePixelRatio ? window.devicePixelRatio : 1
     );
     renderer.autoClear = false;
-    renderer.setClearColor(0x900000, 0.0);
+    renderer.setClearColor(0x000000, 0.0);
     renderer.setSize(window.innerWidth, window.innerHeight);
     divRef.current.appendChild(renderer.domElement);
 
-    //init Scene
-    // scene = new THREE.Scene();
-
-    //init Camera
-    /*  camera = new THREE.PerspectiveCamera(
-      state.fieldOfView,
-      state.aspectRatio,
-      state.near,
-      state.far
-    ); */
     camera.position.set(0, 4, 6);
     scene.add(camera);
     console.log("CAMERA_STATE: =======>", camera);
-
-    // Adding orbit controls
-    // controls = new OrbitControls(camera, renderer.domElement);
 
     controls.minDistance = 5;
     controls.maxDistance = 50;
@@ -81,7 +70,6 @@ const MainScene2 = (props) => {
     const animate = () => {
       requestAnimationFrame(animate);
       renderer.render(scene, camera);
-      controls.update();
     };
     animate();
 
